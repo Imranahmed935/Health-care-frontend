@@ -9,7 +9,6 @@ import { loginUser } from "@/services/auth/loginUser";
 
 const LoginForm = () => {
   const [state, formData, isPending] = useActionState(loginUser, null);
-console.log(state)
   const getFieldError = (fieldName: string) => {
     if (state && state.errors) {
       const error = state.errors.find((err: any) => err.field === fieldName);
