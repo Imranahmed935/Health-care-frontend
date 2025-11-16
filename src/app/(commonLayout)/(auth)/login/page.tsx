@@ -2,6 +2,8 @@
 
 import LoginForm from "@/components/LoginForm";
 
+
+
 const LoginPage = () => {
   return (
     <div className="flex min-h-screen items-center justify-center">
@@ -12,7 +14,7 @@ const LoginPage = () => {
             Enter your credentials to access your account
           </p>
         </div>
-        <LoginForm />
+        <LoginForm/>
       </div>
     </div>
   );
