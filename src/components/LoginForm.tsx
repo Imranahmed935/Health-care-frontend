@@ -1,38 +1,40 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Field, FieldDescription, FieldGroup, FieldLabel } from "./ui/field";
 import { Input } from "./ui/input";
 import { loginUser } from "@/services/auth/loginUser";
+import { toast } from "sonner";
 
 const LoginForm = ({ redirect }: { redirect?: string }) => {
-  const [state, formData, isPending] = useActionState(loginUser, null);
+  const [state, action, isPending] = useActionState(loginUser, null);
+
   const getFieldError = (fieldName: string) => {
-    if (state && state.errors) {
+    if (state?.errors) {
       const error = state.errors.find((err: any) => err.field === fieldName);
-      return error.message;
-    } else {
-      return null;
+      return error?.message;
     }
+    return null;
   };
 
+  useEffect(() => {
+    if (state?.error) {
+      toast.error(state.error);
+    }
+  }, [state]);
+
   return (
-    <form action={formData}>
-       {redirect && <input type="hidden" name="redirect" value={redirect} />}
+    <form action={action}>
+      {redirect && <input type="hidden" name="redirect" value={redirect} />}
+
       <FieldGroup>
         <div className="grid grid-cols-1 gap-4">
-          {/* Email */}
+
           <Field>
             <FieldLabel htmlFor="email">Email</FieldLabel>
-            <Input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="m@example.com"
-              //   required
-            />
+            <Input id="email" name="email" type="email" placeholder="m@example.com" />
 
             {getFieldError("email") && (
               <FieldDescription className="text-red-600">
@@ -41,23 +43,19 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
             )}
           </Field>
 
-          {/* Password */}
           <Field>
             <FieldLabel htmlFor="password">Password</FieldLabel>
-            <Input
-              id="password"
-              name="password"
-              type="password"
-              placeholder="Enter your password"
-              //   required
-            />
+            <Input id="password" name="password" type="password" placeholder="Enter your password" />
+
             {getFieldError("password") && (
               <FieldDescription className="text-red-600">
                 {getFieldError("password")}
               </FieldDescription>
             )}
           </Field>
+
         </div>
+
         <FieldGroup className="mt-4">
           <Field>
             <Button type="submit" disabled={isPending}>
@@ -70,11 +68,9 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
                 Sign up
               </a>
             </FieldDescription>
+
             <FieldDescription className="px-6 text-center">
-              <a
-                href="/forget-password"
-                className="text-blue-600 hover:underline"
-              >
+              <a href="/forget-password" className="text-blue-600 hover:underline">
                 Forgot password?
               </a>
             </FieldDescription>
