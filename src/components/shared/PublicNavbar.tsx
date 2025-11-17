@@ -2,8 +2,15 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "../ui/sheet";
 import { Menu } from "lucide-react";
+import { getCookie } from "@/services/auth/tokenHandlers";
+import LogoutButton from "./LogoutButton";
 
-const PublicNavbar = () => {
+
+
+const PublicNavbar =async  () => {
+
+  const accessToken = await getCookie("accessToken")
+
   const navItems = [
     { href: "#", label: "Consultation" },
     { href: "#", label: "Health Plans" },
@@ -30,10 +37,14 @@ const PublicNavbar = () => {
           ))}
         </nav>
 
-        <div className="hidden md:flex items-center space-x-2">
-          <Link href="/login" className="text-lg font-medium">
-            <Button>Login</Button>
-          </Link>
+         <div className="hidden md:flex items-center space-x-2">
+          {accessToken ? (
+            <LogoutButton />
+          ) : (
+            <Link href="/login">
+              <Button>Login</Button>
+            </Link>
+          )}
         </div>
 
         {/* Mobile Menu */}
