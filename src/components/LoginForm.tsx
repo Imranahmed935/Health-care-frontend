@@ -11,7 +11,6 @@ import { toast } from "sonner";
 const LoginForm = ({ redirect }: { redirect?: string }) => {
   const [state, action, isPending] = useActionState(loginUser, null);
 
-  console.log(state, "state")
 
   const getFieldError = (fieldName: string) => {
     if (state?.errors) {

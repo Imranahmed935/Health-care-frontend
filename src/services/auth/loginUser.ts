@@ -317,7 +317,7 @@ export const loginUser = async (_currentState: any, formData: any): Promise<any>
             throw new Error("Tokens not found in cookies");
         }
 
-       
+    
 
         await setCookie("accessToken", accessTokenObject.accessToken, {
             secure: true,
@@ -351,10 +351,12 @@ export const loginUser = async (_currentState: any, formData: any): Promise<any>
         if (redirectTo) {
             const requestedPath = redirectTo.toString();
             if (isValidRedirectForRole(requestedPath, userRole)) {
-                redirect(requestedPath);
+                 redirect(`${requestedPath}?loggedIn=true`);;
             } else {
-                redirect(getDefaultDashboardRoute(userRole));
+                 redirect(`${getDefaultDashboardRoute(userRole)}?loggedIn=true`);;
             }
+        } else {
+            redirect(`${getDefaultDashboardRoute(userRole)}?loggedIn=true`);
         }
 
     } catch (error: any) {
@@ -363,6 +365,6 @@ export const loginUser = async (_currentState: any, formData: any): Promise<any>
             throw error;
         }
         console.log(error);
-        return { success: false, message: error.message  };
+         return { success: false, message: `${process.env.NODE_ENV === 'development' ? error.message : "Login Failed. You might have entered incorrect email or password."}` };
     }
 }
