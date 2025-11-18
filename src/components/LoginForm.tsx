@@ -11,6 +11,8 @@ import { toast } from "sonner";
 const LoginForm = ({ redirect }: { redirect?: string }) => {
   const [state, action, isPending] = useActionState(loginUser, null);
 
+  console.log(state, "state")
+
   const getFieldError = (fieldName: string) => {
     if (state?.errors) {
       const error = state.errors.find((err: any) => err.field === fieldName);
@@ -20,8 +22,8 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
   };
 
   useEffect(() => {
-    if (state?.error) {
-      toast.error(state.error);
+    if (state && !state.success && state.message) {
+      toast.error(state.message);
     }
   }, [state]);
 
