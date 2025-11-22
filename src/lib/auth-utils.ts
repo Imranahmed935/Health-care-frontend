@@ -24,6 +24,12 @@ export const adminProtectedRoutes: RouteConfig = {
     exact: [], // "/admins"
 }
 
+// export const adminProtectedRoutes: RouteConfig = {
+//     patterns: [/^\/admin(\/.*)?$/],
+//     exact: [],
+// };
+
+
 export const patientProtectedRoutes: RouteConfig = {
     patterns: [/^\/dashboard/], // Routes starting with /dashboard/*
     exact: [], // "/dashboard"
