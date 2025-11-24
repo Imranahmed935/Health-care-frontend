@@ -30,11 +30,11 @@ const SearchFilter = ({
     }
 
     if (debouncedValue) {
-      params.set(paramName, debouncedValue); // ?searchTerm=debouncedValue
-      params.set("page", "1"); // reset to first page on search
+      params.set(paramName, debouncedValue); 
+      params.set("page", "1"); 
     } else {
-      params.delete(paramName); // remove searchTerm param
-      params.delete("page"); // reset to first page on search clear
+      params.delete(paramName); 
+      params.delete("page"); 
     }
 
     startTransition(() => {
