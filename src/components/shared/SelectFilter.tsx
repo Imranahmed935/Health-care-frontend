@@ -13,12 +13,14 @@ interface SelectFilterProps {
   paramName: string; // ?gender=
   placeholder?: string;
   options: { label: string; value: string }[];
+  defaultValue?: string;
 }
 
 const SelectFilter = ({
   paramName,
   placeholder,
   options,
+
 }: SelectFilterProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();

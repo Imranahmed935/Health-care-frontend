@@ -5,7 +5,6 @@ import RefreshButton from "@/components/shared/RefreshtButton";
 import SearchFilter from "@/components/shared/searchFilter";
 
 
-
 const AdminsFilter = () => {
   return (
     <div className="space-y-3">

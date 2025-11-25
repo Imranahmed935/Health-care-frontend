@@ -68,7 +68,9 @@ export async function createAdmin(_prevState: any, formData: FormData) {
  
 export async function getAdmins(queryString?: string) {
     try {
-        const response = await serverFetch.get(`/admin${queryString ? `${queryString}` : ""}`);
+        const response = await serverFetch.get(
+      `/admin${queryString ? `?${queryString}` : ""}`
+    );
         const result = await response.json();
         return result;
     } catch (error: any) {

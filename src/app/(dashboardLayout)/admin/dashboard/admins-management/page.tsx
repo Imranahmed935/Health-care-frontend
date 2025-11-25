@@ -25,7 +25,7 @@ const AdminAdminsManagementPage = async ({
     <div className="space-y-6">
       <AdminsManagementHeader />
 
-      {/* Search, Filters */}
+    
       <AdminsFilter />
 
       <Suspense fallback={<TableSkeleton columns={8} rows={10} />}>
