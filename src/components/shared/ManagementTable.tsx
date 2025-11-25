@@ -22,6 +22,7 @@ export interface Column<T> {
     header:string;
     accessor:keyof T | ((row:T)=> React.ReactNode);
     className?:string;
+    sortKey?: keyof T; 
 }
 
 interface ManagementTableProps<T>{
