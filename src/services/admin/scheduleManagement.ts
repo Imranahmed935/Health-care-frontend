@@ -5,11 +5,6 @@ import { serverFetch } from "@/lib/server-fetch";
 import { zodValidator } from "@/lib/zodValidator";
 import { createScheduleZodSchema } from "@/zod/schedule.validation";
 
-
-/**
- * CREATE SCHEDULE
- * API: POST /schedule
- */
 export async function createSchedule(_prevState: any, formData: FormData) {
     // Build validation payload
     const validationPayload = {
@@ -74,7 +69,6 @@ export async function createSchedule(_prevState: any, formData: FormData) {
     }
 }
 
-
 export async function getSchedules(queryString?: string) {
     try {
         const response = await serverFetch.get(`/schedule${queryString ? `?${queryString}` : ""}`);
@@ -89,7 +83,6 @@ export async function getSchedules(queryString?: string) {
     }
 }
 
-
 export async function getScheduleById(id: string) {
     try {
         const response = await serverFetch.get(`/schedule/${id}`)
@@ -103,7 +96,6 @@ export async function getScheduleById(id: string) {
         };
     }
 }
-
 
 export async function deleteSchedule(id: string) {
     try {

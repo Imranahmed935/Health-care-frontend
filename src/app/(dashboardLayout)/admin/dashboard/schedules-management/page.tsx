@@ -19,7 +19,7 @@ const AdminSchedulesManagementPage = async ({
 
   const queryString = queryStringFormatter(searchParamsObj);
   const schedulesResult = await getSchedules(queryString);
-  console.log(schedulesResult)
+
 
   const totalPages = Math.ceil(
     (schedulesResult?.meta?.total || 1) / (schedulesResult?.meta?.limit || 1)
