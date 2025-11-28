@@ -8,6 +8,7 @@ const serverFetchHelper = async (
   options: RequestInit
 ): Promise<Response> => {
   const { headers, ...restOptions } = options;
+  
 
   const accessToken = await getCookie("accessToken");
 
